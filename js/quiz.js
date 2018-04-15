@@ -7,9 +7,9 @@ var correct = [];
 var wrong = [];
 
 var questions = [
-  ["First question?","First"],
-  ["Second question?","Second"],
-  ["Third question?","Third"]
+  {question: "First question?", answer: "First"},
+  {question: "Second question?", answer: "Second"},
+  {question: "Third question?", answer: "Third"}
 ];
 
 function print(message) {
@@ -24,7 +24,7 @@ function printanswers(type) {
   var html = "<ol>";
   
   for (var i = 0; i < type.length; i++) {
-    html += "<li>Question: " + type[i][0] + "<br>Answer: " + type[i][1] + "<br>Your guess: " + type[i][2] + "</li>";
+    html += "<li>Question: " + type[i].question + "<br>Answer: " + type[i].answer + "<br>Your guess: " + type[i].guess + "</li>";
   }
   
   html += "</ol>";
@@ -32,14 +32,14 @@ function printanswers(type) {
 }
 
 for (var i = 0; i < questions.length; i++) {
-  question = questions[i][0];
-  answer = questions[i][1];
+  question = questions[i].question;
+  answer = questions[i].answer;
   guess = prompt(question);
   
   if (guess.toLowerCase() === answer.toLowerCase()) {
-    correct.push([question, answer, guess]);
+    correct.push({question: question, answer: answer, guess: guess});
   } else {
-    wrong.push([question, answer, guess]);
+    wrong.push({question: question, answer: answer, guess: guess});
   }
 }
 
@@ -48,8 +48,3 @@ html += printanswers(correct);
 html += "<h1>Your " + wrong.length +  " wrong answer are: </h1>";
 html += printanswers(wrong);
 print(html);
-
-
-
-
-
